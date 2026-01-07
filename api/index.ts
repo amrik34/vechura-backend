@@ -27,10 +27,11 @@ app.get("/villiers", async (_req, res) => {
     const data = parser.parse(xml);
     const items = data?.rss?.channel?.item ?? [];
 
+    res.setHeader("Cache-Control", "s-maxage=600");
     res.status(200).json(items);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({error: "Failed to fetch Villiers data"});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({error: "Villiers fetch failed"});
   }
 });
 
