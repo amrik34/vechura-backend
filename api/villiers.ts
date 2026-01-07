@@ -5,6 +5,17 @@ export default async function handler(
   _req: VercelRequest,
   res: VercelResponse
 ) {
+  // ✅ CORS HEADERS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight
+  if (_req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   try {
     const response = await fetch(
       "https://api.villiers.ai/feeds/empty-legs?id=10228"
