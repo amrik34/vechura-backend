@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@vercel/node": "^5.5.16",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "fast-xml-parser": "^4.3.5"
